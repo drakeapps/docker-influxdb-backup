@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  influxdb-backup:
+    image: drakeapps/influxdb-backup
+    build:
+      context: .
+      args:
+        - CRON_FREQ=0 3 */1 * *
+    env_file: .env
+    volumes:
+      - ./logs:/var/logs
+      - ./backups:/mnt
